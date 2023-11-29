@@ -99,23 +99,56 @@ sDAec-sDAec
 zOAGtZEc-zOAGtZEc
 Cb2n1GNN-Cb2n1G`
 
-const LIST_ARR = LIST.split("\n");
+const LIST_ARR = LIST.split("\n")
 
-const final = LIST_ARR.filter((line) => {
-  const [cadenaStr, checksumStr] = line.split("-");
-  const cadenaArr = cadenaStr.split("");
-  const checksumArr = checksumStr.split("");
+let final = []
 
-  const allExist = checksumArr.every((char) => cadenaArr.includes(char));
-  const onlyOne = checksumArr.every(
-    (char) => cadenaArr.filter((el) => el === char).length <= 1
-  );
-  const order = checksumArr.map((char) => cadenaArr.indexOf(char));
-  const order2 = order.every((value, index) => index === 0 || value > order[index - 1]);
+LIST_ARR.map((line) => {
 
-  return allExist && onlyOne && order2;
-});
+    let lineArr = line.split("-")
+
+    let cadenaStr = lineArr[0]
+    let cadenaArr = cadenaStr.split("")
+
+    let checksumStr = lineArr[1]
+    let checksumArr = checksumStr.split("")
+
+    let allExist = []
+    let onlyOne = []
+    let order = []
+    let order2 = []
+
+    
+
+    // comprobar que esten todos los caracteres en la cadena
+    checksumArr.forEach((el) => {
+        cadenaArr.includes(el) && allExist.push(true)
+    })
+
+    // comprobar que esten solo una vez
+    checksumArr.forEach((char) => {
+        cadenaArr.filter(el => el === char).length <= 1 ? onlyOne.push(true) : onlyOne.push(false)
+    })
+
+    //comprobar el orden
+    checksumArr.forEach((char) => {
+        order.push(cadenaArr.indexOf(char))
+    })
+
+    for (let i = 0; i < order.length - 1; i++) {
+        order[i] < order[i + 1] ? order2.push(true) : order2.push(false)
+
+    }
+
+    let result = [...allExist, ...onlyOne, ...order2]
+    
+    result.every((el) => el === true) && final.push(checksumStr)
+
+    //console.log(line + "Este archivo es:" + result.every((el) => el === true));
+
+
+
+
+})
 
 console.log(final[32]);
-
-
