@@ -1,4 +1,4 @@
-const LIST = "xyyzz33-xy"
+const LIST = "abbc11-ca"
 
 const listArr = LIST.split("-")
 
@@ -9,6 +9,8 @@ let checksumStr = listArr[1]
 let checksumArr = checksumStr.split("")
 let allExist = []
 let onlyOne = []
+let order = []
+let order2 = []
 
 
 console.log("cadena: " + cadenaStr);
@@ -22,15 +24,18 @@ checksumArr.forEach((el) => {
 
 // comprobar que esten solo una vez
 checksumArr.forEach((char) => {
-    cadenaArr.filter( el => el === char).length <= 1 && onlyOne.push(true)
+    cadenaArr.filter( el => el === char).length <= 1 ? onlyOne.push(true) : onlyOne.push(false)
 })
 
 //comprobar el orden
-
+checksumArr.forEach((char) => {
+   order.push(cadenaArr.indexOf(char))
+})
 
 
 console.log("existen todos " + allExist);
 console.log("estan solo una vez " + onlyOne);
+console.log("orden " + order);
 
 
 
