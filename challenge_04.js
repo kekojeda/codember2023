@@ -118,7 +118,7 @@ LIST_ARR.map((line) => {
     let order = []
     let order2 = []
 
-    
+
 
     // comprobar que esten todos los caracteres en la cadena
     checksumArr.forEach((el) => {
@@ -144,9 +144,7 @@ LIST_ARR.map((line) => {
     
     result.every((el) => el === true) && final.push(checksumStr)
 
-    //console.log(line + "Este archivo es:" + result.every((el) => el === true));
-
-
+    console.log(line + "Este archivo es:" + result.every((el) => el === true));
 
 
 })
